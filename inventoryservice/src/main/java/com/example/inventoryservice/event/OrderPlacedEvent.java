@@ -1,12 +1,13 @@
-package com.example.inventoryservice.dto;
+package com.example.inventoryservice.event;
 
 import lombok.*;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
-public class InventoryReservedEvent {
-    private String eventId;
+public class OrderPlacedEvent {
     private String orderId;
     private String productId;
     private int quantity;
 }
+

@@ -1,4 +1,4 @@
-package com.example.inventoryservice.dto;
+package com.example.riskservice.Event;
 
 import lombok.*;
 

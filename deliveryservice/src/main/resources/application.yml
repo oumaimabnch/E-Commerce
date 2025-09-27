@@ -5,11 +5,13 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
     consumer:
+      group-id: delivery-service
+      auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      group-id: delivery-service
       properties:
-        "[spring.json.trusted.packages]": "*"
+        spring.json.trusted.packages: "*"
+
   
   datasource:
     url: jdbc:postgresql://postgres:5432/riskmanagement

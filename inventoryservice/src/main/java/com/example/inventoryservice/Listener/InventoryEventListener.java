@@ -2,7 +2,8 @@ package com.example.inventoryservice.Listener;
 
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
-import com.example.inventoryservice.dto.*;
+
+import com.example.inventoryservice.event.*;
 import com.example.inventoryservice.service.InventoryService;
 
 import lombok.RequiredArgsConstructor;

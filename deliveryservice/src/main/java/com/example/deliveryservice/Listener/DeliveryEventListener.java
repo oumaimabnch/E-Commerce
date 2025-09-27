@@ -5,8 +5,8 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
-import com.example.deliveryservice.events.DeliveryCreatedEvent;
-import com.example.deliveryservice.events.InventoryReservedEvent;
+import com.example.deliveryservice.event.DeliveryCreatedEvent;
+import com.example.deliveryservice.event.InventoryReservedEvent;
 
 import lombok.*;
 

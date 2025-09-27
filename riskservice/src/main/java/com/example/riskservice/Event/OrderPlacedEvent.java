@@ -1,11 +1,13 @@
-package com.example.deliveryservice.events;
+package com.example.riskservice.Event;
 
 import lombok.*;
 
 @Data
 @AllArgsConstructor
-public class InventoryReservedEvent {
-    private String eventId;
+@NoArgsConstructor
+
+
+public class OrderPlacedEvent {
     private String orderId;
     private String productId;
     private int quantity;
