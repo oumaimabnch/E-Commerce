@@ -5,9 +5,8 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderPlacedEvent {
+public class OutOfStockEvent {
+    private String eventId;
     private String orderId;
     private String productId;
-    private int quantity;
-    private String status;
 }

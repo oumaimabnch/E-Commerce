@@ -1,4 +1,4 @@
-package com.exemple.orderservice.Event;
+package com.exemple.orderservice.event;
 
 import java.util.UUID;
 
@@ -6,6 +6,8 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 import com.exemple.orderservice.entity.Order;
+import com.exemple.orderservice.entity.OrderStatus;
+// import com.exemple.orderservice.repository.OrderRepository;
 
 import lombok.*;
 
@@ -13,10 +15,13 @@ import lombok.*;
 @RequiredArgsConstructor
 public class OrderEventPublisher {
     private final KafkaTemplate<String, Object> kafkaTemplate;
+    // private final OrderRepository  orderRepository;
 
     public void publishOrderPlaced(Order order) {
-        OrderPlacedEvent event = new OrderPlacedEvent(UUID.randomUUID().toString(), order.getProductId(),
-                order.getQuantity());
-        kafkaTemplate.send("order-placed-events", event);
+        order.setId(UUID.randomUUID().toString());
+        order.setStatus(OrderStatus.PENDING);
+        // orderRepository.save(order);
+
+        kafkaTemplate.send("order-placed-events", order);
     }
 }
