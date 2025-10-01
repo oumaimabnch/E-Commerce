@@ -21,8 +21,7 @@ public class DeliveryEventListener {
         System.out.println("Received InventoryReservedEvent: " + event);
 
         DeliveryCreatedEvent deliveryEvent = new DeliveryCreatedEvent(
-                UUID.randomUUID().toString(),
-                event.getOrderId(),
+                event.getId(),
                 event.getProductId(),
                 event.getQuantity());
 

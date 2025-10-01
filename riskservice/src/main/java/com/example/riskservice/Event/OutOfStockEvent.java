@@ -6,7 +6,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OutOfStockEvent {
-    private String eventId;
+    private String id;
     private String orderId;
     private String productId;
 }

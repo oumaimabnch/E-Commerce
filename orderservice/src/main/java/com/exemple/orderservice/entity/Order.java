@@ -1,20 +1,25 @@
 package com.exemple.orderservice.entity;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 import lombok.*;
 
+@Entity               
+@Table(name = "orders") 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-// @Builder
-
+@Builder
 public class Order {
-    // @Id
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID) 
     private String id;
+
     private String productId;
+
     private int quantity;
-    @Enumerated (EnumType.STRING)
-    private OrderStatus status ;
+
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
 }

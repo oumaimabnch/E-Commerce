@@ -18,24 +18,22 @@ import lombok.*;
 public class InventoryService {
 
     private final KafkaTemplate<String, Object> kafkaTemplate;
-    // private final InventoryRepository inventoryRepository ;
+    private final InventoryRepository inventoryRepository ;
 
     public void processOrder(OrderPlacedEvent order) {
-        //  Product product = inventoryRepository.findById(order.getProductId()).get();
+         Product product = inventoryRepository.findById(order.getProductId()).get();
          
+            System.out.println("Received event product : " + product);
 
-//   if (product.getQuantity() >= order.getQuantity() ) {
+  if (product.getQuantity() >= order.getQuantity() ) {
 
-   if (order.getQuantity() >3 ) {
-
-            System.out.println("Received event: " + order.getQuantity());
-            //  product.setQuantity(product.getQuantity()- order.getQuantity());
-            //  inventoryRepository.save(product);
+            System.out.println("Received event: " + order);
+             product.setQuantity(product.getQuantity()- order.getQuantity());
+             inventoryRepository.save(product);
              sendReservedEvent(order);
            
 
-        // } else if (product.getQuantity() <= 0 || product.getQuantity() < order.getQuantity()){
-        } else {
+        } else if (product.getQuantity() <= 0 || product.getQuantity() < order.getQuantity()){
 
                         System.out.println("Received order: " + order.getQuantity());
 
@@ -46,16 +44,14 @@ public class InventoryService {
 
      private void sendOutOfStock(OrderPlacedEvent order) {
         OutOfStockEvent outOfStockEvent = new OutOfStockEvent(
-                UUID.randomUUID().toString(),
-                order.getOrderId(),
+                order.getId(),
                 order.getProductId()
         );
         kafkaTemplate.send("out-of-stock-events", outOfStockEvent);
     }
     private void sendReservedEvent (OrderPlacedEvent order) {
      InventoryReservedEvent reservedEvent = new InventoryReservedEvent(
-                    UUID.randomUUID().toString(),
-                    order.getOrderId(),
+                    order.getId(),
                     order.getProductId(),
                     order.getQuantity());
             kafkaTemplate.send("inventory-reserved-events", reservedEvent);

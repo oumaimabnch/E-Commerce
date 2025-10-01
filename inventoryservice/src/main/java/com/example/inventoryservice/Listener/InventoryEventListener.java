@@ -21,6 +21,7 @@ public class InventoryEventListener {
         containerFactory = "kafkaListenerContainerFactory"
     )
     public void listen(OrderPlacedEvent orderPlacedEvent) {
+        System.out.println("orderPlaced;"+ orderPlacedEvent);
         inventoryService.processOrder(orderPlacedEvent);
     }
 }

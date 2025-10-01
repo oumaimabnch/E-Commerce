@@ -6,8 +6,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class InventoryReservedEvent {
-    private String eventId;
-    private String orderId;
+    private String id;
     private String productId;
     private int quantity;
 }

@@ -8,8 +8,7 @@ import lombok.*;
 
 
 public class DeliveryCreatedEvent {
-    private String deliveryId;
-    private String orderId;
+    private String id;
     private String productId;
     private int quantity;
 }
